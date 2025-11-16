@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.phone {
+    width: 375px;
+    height: 750px;
+    background: linear-gradient(135deg, #5b8ce8 0%, #4a7cd6 100%);
+    border-radius: 30px;
+    padding: 120px 30px 30px 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.tagline {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.summary-tagline {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #2d5baa;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background: #234785;
+}
+
+.btn-secondary {
+    background: white;
+    color: #5b8ce8;
+    margin-bottom: 10px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.lock-icon {
+    width: 60px;
+    height: 70px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.lock-body {
+    width: 40px;
+    height: 35px;
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+.lock-top {
+    width: 25px;
+    height: 25px;
+    border: 4px solid white;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 0;
+    left: 17.5px;
+}
+
+.instructions {
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    margin: 15px 0 25px 0;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.upload-area {
+    width: 100%;
+    height: 150px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-area:hover {
+    background: white;
+}
+
+.cloud-icon {
+    width: 50px;
+    height: 35px;
+    background: white;
+    border: 3px solid #5b8ce8;
+    border-radius: 25px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.cloud-icon::before {
+    content: '↑';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #5b8ce8;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upload-text {
+    color: #5b8ce8;
+    font-size: 12px;
+}
+
+.text-box {
+    width: 100%;
+    max-width: 100%;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: none;
+    resize: vertical;
+}
+
+.word-count {
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #5b8ce8;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: #f0f0f0;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #d32f2f;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.chat-container {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5b8ce8;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.message-bubble {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 12px;
+    max-width: 70%;
+    margin: 0 10px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.message.user .message-bubble {
+    background: rgba(255,255,255,0.9);
+}
+
+.question-input-area {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.question-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.send-btn {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5b8ce8;
+    transition: all 0.3s;
+}
+
+.send-btn:hover {
+    background: #f0f0f0;
+}
+
+.hidden {
+    display: none;
+}
+
+.bottom-link {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.permission-text {
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    margin-top: auto;
+    opacity: 0.8;
+}
