@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZ App</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="phone" id="loginPage">
+        <div class="logo">EZ</div>
+        <div class="input-group">
+            <input type="text" id="loginUsername" placeholder="Username or Email">
+        </div>
+        <div class="input-group">
+            <input type="password" id="loginPassword" placeholder="Password">
+        </div>
+        <button class="btn btn-primary" onclick="login()">Log In</button>
+        <a class="link" onclick="showPage('forgotPage')">Forgot Password?</a>
+        <div class="bottom-link">
+            <a class="link" onclick="showPage('signupPage')">Don't have an account? <strong>Sign Up</strong></a>
+        </div>
+    </div>
+
+    <!-- Forgot Password Page -->
+    <div class="phone hidden" id="forgotPage">
+        <div class="back-btn" onclick="showPage('loginPage')"> &larr; Back </div>
+        <div class="logo">EZ</div>
+        <div class="lock-icon">
+            <div class="lock-top"></div>
+            <div class="lock-body"></div>
+        </div>
+        <div class="instructions">
+            Enter your email, phone, or username<br>and we'll send you a link to change a<br>new password
+        </div>
+        <div class="input-group">
+            <input type="text" id="forgotInput" placeholder="Email, phone, or username">
+        </div>
+        <button class="btn btn-primary" onclick="resetPassword()">Forgot Password</button>
+        <div class="bottom-link">
+            <a class="link" onclick="showPage('signupPage')">Don't have an account? <strong>Sign Up</strong></a>
+        </div>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div class="phone hidden" id="signupPage">
+        <div class="back-btn" onclick="showPage('loginPage')"> &larr; Back </div>
+        <div class="logo">EZ</div>
+        <div class="input-group">
+            <input type="text" id="signupName" placeholder="Full Name">
+        </div>
+        <div class="input-group">
+            <input type="email" id="signupEmail" placeholder="Email">
+        </div>
+        <div class="input-group">
+            <input type="password" id="signupPassword" placeholder="Password">
+        </div>
+        <div class="input-group">
+            <input type="password" id="signupConfirm" placeholder="Confirm Password">
+        </div>
+        <button class="btn btn-primary" onclick="signup()">Sign Up</button>
+        <a class="link" onclick="showPage('loginPage')">Have an account? <strong>Log In</strong></a>
+        <div class="permission-text">
+            We need permission for the service you use<br><a href="#" style="color: white; text-decoration: underline;">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Main Choice Page -->
+    <div class="phone hidden" id="summarizeChoicePage">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo">EZ</div>
+        <div class="tagline" style="margin-top: 30px; margin-bottom: 40px;">
+            Hello!<br><strong>What would you like<br>to do today?</strong>
+        </div>
+        <div class="input-group">
+            <select id="contentType" onchange="updateChoice()">
+                <option value="">Select type...</option>
+                <option value="email">Summarize Email</option>
+                <option value="pdf">Summarize PDF</option>
+                <option value="question">Ask Questions (PDF)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Upload PDF for Summary -->
+    <div class="phone hidden" id="uploadPDFPage">
+        <div class="back-btn" onclick="showPage('summarizeChoicePage')"> &larr; Back </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo">EZ</div>
+        <div class="tagline" style="margin-top: 20px; margin-bottom: 20px;">
+            <strong>Upload your PDF<br>Below!</strong>
+        </div>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="cloud-icon"></div>
+            <div class="upload-text">Note: File Limit 50MB</div>
+        </div>
+        <input type="file" id="fileInput" accept=".pdf" style="display: none;" onchange="handleFileUpload()">
+        <button class="btn btn-primary" onclick="uploadFile()">UPLOAD FILE</button>
+    </div>
+
+    <!-- Upload PDF for Questions -->
+    <div class="phone hidden" id="uploadQuestionPDFPage">
+        <div class="back-btn" onclick="showPage('summarizeChoicePage')"> &larr; Back </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo">EZ</div>
+        <div class="tagline" style="margin-top: 20px; margin-bottom: 20px;">
+            <strong>Upload your PDF<br>to Ask Questions!</strong>
+        </div>
+        <div class="upload-area" onclick="document.getElementById('questionFileInput').click()">
+            <div class="cloud-icon"></div>
+            <div class="upload-text">Note: File Limit 50MB</div>
+        </div>
+        <input type="file" id="questionFileInput" accept=".pdf" style="display: none;" onchange="handleQuestionFileUpload()">
+        <button class="btn btn-primary" onclick="uploadQuestionFile()">UPLOAD FILE</button>
+        <div id="uploadStatus" style="color: white; font-size: 12px; margin-top: 10px; text-align: center;"></div>
+    </div>
+
+    <!-- Email Summary Page -->
+    <div class="phone hidden" id="summaryPage">
+        <div class="back-btn" onclick="showPage('summarizeChoicePage')"> &larr; Back </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo">EZ</div>
+        <div class="tagline summary-tagline">
+            <strong>Copy and Paste<br>your Email below!</strong>
+        </div>
+        <div class="text-box" id="summaryText" contenteditable="true" placeholder="Paste your email here..."></div>
+        <div class="word-count"><span id="currentWords">0</span>/1500 Words</div>
+        <button class="btn btn-primary" onclick="submitSummary()">SUBMIT</button>
+    </div>
+
+    <!-- Summary Result Page -->
+    <div class="phone hidden" id="summaryResultPage">
+        <div class="back-btn" onclick="showPage('summarizeChoicePage')"> &larr; Back </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo">EZ</div>
+        <div class="chat-container" id="summaryContainer">
+            <!-- Summary will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Q&A Chat Page -->
+    <div class="phone hidden" id="chatPage">
+        <div class="back-btn" onclick="showPage('summarizeChoicePage')"> &larr; Back </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="logo" style="align-self: flex-start; width: 50px; height: 50px; font-size: 20px;">EZ</div>
+        <div class="chat-container" id="chatContainer">
+            <div class="message">
+                <div class="avatar">EZ</div>
+                <div class="message-bubble">Ask me anything about your PDF!</div>
+            </div>
+        </div>
+       
+        <!-- Question Input Area -->
+        <div class="question-input-area">
+            <input type="text" id="questionInput" class="question-input" placeholder="Ask a question about the PDF...">
+            <button class="send-btn" onclick="askQuestion()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+</script>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
