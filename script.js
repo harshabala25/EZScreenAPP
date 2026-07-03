@@ -9,7 +9,6 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-console.log("Connected to Firebase:", db);
 
 // ------------------------------------------------------
 // CONFIGURATION
@@ -106,11 +105,9 @@ function logout() {
    
     auth.signOut()
         .then(() => {
-            console.log("User logged out successfully");
             showPage("loginPage");
         })
         .catch((error) => {
-            console.error("Logout error:", error);
             alert("Error logging out: " + error.message);
         });
 }
@@ -209,8 +206,8 @@ async function uploadFile() {
         }
 
         const data = await response.json();
-        console.log("Response from n8n:", data);
-       
+
+        
         const summary = data.summary || "Error: No summary returned.";
 
         container.innerHTML = `
@@ -264,7 +261,6 @@ async function uploadQuestionFile() {
         pdfTextContent = await extractTextFromPDF(file);
         pdfFileName = file.name;
 
-        console.log("Extracted text length:", pdfTextContent.length);
 
         showPage("chatPage");
 
@@ -335,7 +331,6 @@ async function askQuestion() {
         }
 
         const data = await response.json();
-        console.log("Response from n8n:", data);
        
         const answer = data.answer || "I couldn't find an answer to that question.";
 
@@ -398,7 +393,6 @@ async function submitSummary() {
         }
 
         const data = await response.json();
-        console.log("Response from n8n:", data);
        
         const summary = data.summary || data.result || data.output || data.message || "Error: No summary returned.";
 
